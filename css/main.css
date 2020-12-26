@@ -1,0 +1,116 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    outline: none;
+    font-family: 'Langar', sans-serif;
+}
+
+html, body {
+    height: 100%;
+
+    background: #121214;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+:root {
+    font-size: 62.5%;
+}
+
+div.container {
+    width: 80rem;
+    height: 50rem;
+
+    background: #202024;
+    border-radius: 1rem;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+div.container h1 {
+    font-size: 3.5rem;
+    color: #fff;
+    padding-top: 1rem;
+    text-align: center;
+}
+
+div.box-input {
+    padding: 1rem 0 5rem 0;
+}
+
+div.container div.box-input input {
+    width: 30rem;
+    height: 4rem;
+
+    padding-left: .8rem;
+
+    background: none;
+    font-size: 1.7rem;
+    color: #fff;
+
+    border: .2rem solid #d6ac4e;
+    border-top-left-radius: .5rem;
+    border-bottom-left-radius: .5rem;
+    border-right: none;
+}
+
+div.box-input button {
+    width: 10rem;
+    height: 4rem;
+
+    background: #d6ac4e;
+    color: #fff;
+    font-size: 1.7rem;
+
+    border: .2rem solid #d6ac4e;
+    border-top-right-radius: .5rem;
+    border-bottom-right-radius: .5rem;
+    border-left: none;
+
+    margin-left: -.2rem;
+
+    cursor: pointer;
+}
+
+div.box-input button:hover {
+    background: #dabc7e;   
+}
+
+div.display {
+    width: 50rem;
+    border-radius: .5rem;
+
+    /* background: lightgray; */
+}
+
+div.task {
+    height: 4rem;
+    padding: 1rem;
+
+    background: #464545;
+    border-radius: .5rem;
+    margin-top: 1rem;
+
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+div.task p, i {
+    font-size: 1.8rem;
+    color: #d6ac4e;
+}
+
+div.task i {
+    cursor: pointer;
+    padding-left: 1.5rem;
+}
+
+div.task i:hover {
+    color: #dabc7e;
+}
