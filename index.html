@@ -19,9 +19,22 @@
         <div class="container">
             <h1>Oque o dia nos reserva ?</h1>
 
-            <div class="box-input">
+            <div id="inputs" class="box-input">
                 <input id="tarefa" type="text" placeholder="Escreva uma tarefa...">
                 <button onclick="createTask()"type="button">Add Tarefa</button>
+            </div>
+
+            <div id="edit" class="edit">
+                <h1>Editar Tarefa</h1>
+                <div class="edit-input">
+                    <input id="editInput" type="text" placeholder="">
+                    <button onclick="confirmEdit()" type="button">Editar</button>
+                </div>
+
+                <div id="confirm" class="confirm">
+                    <button class="cancel">Cancelar</button>
+                    <button class="confirm">Confirmar</button>
+                </div>
             </div>
 
 

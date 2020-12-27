@@ -30,6 +30,10 @@ div.container {
     display: flex;
     flex-direction: column;
     align-items: center;
+
+    animation-name: apper;
+    animation-duration: .4s;
+
 }
 
 div.container h1 {
@@ -46,6 +50,8 @@ div.box-input {
 div.container div.box-input input {
     width: 30rem;
     height: 4rem;
+    animation-name: apper-left;
+    animation-duration: .3s;
 
     padding-left: .8rem;
 
@@ -99,6 +105,9 @@ div.task {
     display: flex;
     align-items: center;
     justify-content: space-between;
+
+    animation-name: apper-left;
+    animation-duration: .3s;
 }
 
 div.task p, i {
@@ -113,4 +122,164 @@ div.task i {
 
 div.task i:hover {
     color: #dabc7e;
+}
+
+div.icons {
+    animation-name: apper-right;
+    animation-duration: .4s;
+}
+
+
+div.edit {
+    width: 60rem;
+    height: 50rem;
+
+    margin: auto;
+    position: absolute;
+
+    background: rgba(0,0,0,0.8);
+
+    display: none;
+    align-items: center;
+    flex-direction: column;
+    justify-content: center;
+}
+
+div.edit h1 {
+    color: #d6ac4e;
+    padding-bottom: 2rem;
+    animation-name: apper-up;
+    animation-duration: .4s;
+}
+
+div.edit input {
+    width: 30rem;
+    height: 4rem;
+
+    animation-name: apper-left;
+    animation-duration: .3s;
+
+    padding-left: .8rem;
+
+    background: none;
+    font-size: 1.7rem;
+    color: #fff;
+
+    border: .2rem solid #d6ac4e;
+    border-top-left-radius: .5rem;
+    border-bottom-left-radius: .5rem;
+    border-right: none;
+}
+
+div.edit-input {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+div.edit-input button {
+    width: 10rem;
+    height: 4rem;
+
+    background: #d6ac4e;
+    color: #fff;
+    font-size: 1.7rem;
+
+    border: .2rem solid #d6ac4e;
+    border-top-right-radius: .5rem;
+    border-bottom-right-radius: .5rem;
+    border-left: none;
+
+    margin-left: -.2rem;
+
+    cursor: pointer;
+}
+
+div.edit-input button:hover {
+    background: #dabc7e;   
+}
+
+div.confirm {
+    width: 30rem;
+    height: 10rem;
+
+    margin-top: 7rem;
+
+    display: none;
+    align-items: center;
+    justify-content: space-between;
+}
+
+div.confirm button {
+    width: 10rem;
+    height: 4rem;
+
+    border: .1rem solid #d6ac4e;
+    border-radius: .5rem;
+
+    cursor: pointer;
+}
+
+div.confirm button.cancel {
+    background: rgba(141, 3, 3, 0.856);
+    color: #dabc7e;
+}
+
+div.confirm button.cancel:hover {
+    background: rgba(189, 6, 6, 0.856);
+}
+
+div.confirm button.confirm {
+    background: rgb(4, 211, 97);
+    color: #121214;
+}
+
+div.confirm button.confirm:hover {
+    background: rgb(56, 248, 142);
+}
+
+@keyframes apper-left {
+    0% {
+        opacity: 0;
+        transform: translateX(-100%);
+    }
+
+    100% {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+@keyframes apper-right {
+    0% {
+        opacity: 0;
+        transform: translateX(900%);
+    }
+
+    100% {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+@keyframes apper {
+    0% {
+        opacity: 0;
+    }
+
+    100% {
+        opacity: 1;
+    }
+}
+
+@keyframes apper-up {
+    0% {
+        opacity: 0;
+        transform: translateY(-100%);
+    }
+
+    100% {
+        opacity: 1;
+        transform: translateY(0);
+    }
 }
