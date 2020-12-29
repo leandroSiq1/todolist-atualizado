@@ -16,26 +16,31 @@
     </head>
     <body>
 
-        <div class="container">
-            <h1>Oque o dia nos reserva ?</h1>
-
-            <div id="inputs" class="box-input">
-                <input id="tarefa" type="text" placeholder="Escreva uma tarefa...">
-                <button onclick="createTask()"type="button">Add Tarefa</button>
-            </div>
+        <div id="container" class="container">
 
             <div id="edit" class="edit">
                 <h1>Editar Tarefa</h1>
                 <div class="edit-input">
                     <input id="editInput" type="text" placeholder="">
-                    <button onclick="confirmEdit()" type="button">Editar</button>
+                    <button onclick="editar()" type="button">Editar</button>
                 </div>
 
                 <div id="confirm" class="confirm">
                     <button class="cancel">Cancelar</button>
-                    <button class="confirm">Confirmar</button>
+                    <button class="confirm" onclick="confirmed()">Confirmar</button>
                 </div>
             </div>
+
+            <h1 id="h1One" class="one">Oque o dia nos reserva ?</h1>
+            <h1 id="h1Two" class="two">Selecione a Tarefa que deseja Editar</h1>
+
+            <div id="inputs" class="box-input">
+                <input id="tarefa" type="text" placeholder="Escreva uma tarefa...">
+                <button onclick="createTask()"type="button">Add Tarefa</button>
+                <button id="btnEdit" onclick="edit()" class="edit-tafera">Editar Tarefa</button>
+            </div>
+            
+            
 
 
             <div class="display" id="display"></div>

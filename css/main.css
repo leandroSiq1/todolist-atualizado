@@ -21,7 +21,7 @@ html, body {
 }
 
 div.container {
-    width: 80rem;
+    width: 60rem;
     height: 50rem;
 
     background: #202024;
@@ -36,15 +36,26 @@ div.container {
 
 }
 
-div.container h1 {
+div.container > h1.one {
     font-size: 3.5rem;
     color: #fff;
     padding-top: 1rem;
     text-align: center;
+    display: flex;
+}
+
+div.container > h1.two {
+    font-size: 3.5rem;
+    color: #fff;
+    padding-top: 1rem;
+    text-align: center;
+    display: none;
 }
 
 div.box-input {
     padding: 1rem 0 5rem 0;
+    display: flex;
+    position: relative;
 }
 
 div.container div.box-input input {
@@ -65,7 +76,7 @@ div.container div.box-input input {
     border-right: none;
 }
 
-div.box-input button {
+div.box-input > button {
     width: 10rem;
     height: 4rem;
 
@@ -85,6 +96,20 @@ div.box-input button {
 
 div.box-input button:hover {
     background: #dabc7e;   
+}
+
+div.container div.box-input > button.edit-tafera {
+    width: 15rem;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    position: absolute;
+    left: 0;
+    bottom: 0;
+
+    display: none;
 }
 
 div.display {
@@ -131,13 +156,16 @@ div.icons {
 
 
 div.edit {
-    width: 60rem;
-    height: 50rem;
+    height: 20rem;
 
     margin: auto;
-    position: absolute;
+    padding: 1rem;
+    /* position: absolute;
+    left: 0;
+    top: 0;
+    bottom: 0; */
 
-    background: rgba(0,0,0,0.8);
+    /* background: rgba(0,0,0,0.8); */
 
     display: none;
     align-items: center;
@@ -208,6 +236,9 @@ div.confirm {
     display: none;
     align-items: center;
     justify-content: space-between;
+
+    animation-name: apper-up;
+    animation-duration: .4s;
 }
 
 div.confirm button {

@@ -1,4 +1,3 @@
-const iconEdit = "fas fa-pencil-alt";
 const iconDelete = "far fa-trash-alt";
 const display = document.getElementById("display");
 const input = document.getElementById("tarefa");
@@ -9,8 +8,9 @@ function createTask() {
     let task = document.createElement("div");
     let icons = document.createElement("div");
     let p = document.createElement("p");
-    let iconEdite = document.createElement("i")
     let iconDel = document.createElement("i")
+
+    let btn = document.getElementById("btnEdit");
 
     if(value != "") {
         display.appendChild(task);
@@ -20,54 +20,37 @@ function createTask() {
         task.appendChild(icons);
 
         icons.classList = "icons";
-        iconEdite.classList = iconEdit;
+        icons.appendChild(iconDel);
         iconDel.classList = iconDelete;
 
-        icons.appendChild(iconEdite);
-        icons.appendChild(iconDel);
-    
-        icons.childNodes[1].addEventListener("click", () => {
-            icons.childNodes[1].parentNode.parentNode.remove();
+        task.children[1].children[0].addEventListener("click", ()=>{
+            task.remove();
+            if(display.childNodes.length < 1) {
+                btn.style.display = "none";  
+            }
         });
 
-        icons.childNodes[0].addEventListener("click", () => {
-            edit(icons.childNodes[0].parentNode.parentNode);
-            confirmEdit(icons.childNodes[0].parentNode.parentNode);
-        });
-
-        p.innerText = value;
+        p.innerText = value;   
+        btn.style.display = "flex";
+        input.value = "";
         
-        input.value = "";      
     }
-}
-
-function remove() {
-    this.remove();
+    
 }
 
 function edit() {
-    let display = document.getElementById("display");
-    let boxInput = document.getElementById("inputs");
-    let edit = document.getElementById("edit");
+    let title = document.getElementById("h1One");
+    let title2 = document.getElementById("h1Two");
+    let container = document.getElementById("container");
+    let displayEdit = document.getElementById("edit");
+    let displayInputs = document.getElementById("inputs");
 
-    display.style.display = "none";
-    boxInput.style.display = "none";
-    edit.style.display = "flex";
+    // displayEdit.style.display = "flex";
+    title2.style.display = "flex";
+    displayInputs.style.display = "none";
+    title.style.display = "none";
 
-}
-
-function confirmEdit(element) {
-    let confirm = document.getElementById("confirm");
-    confirm.style.display = "flex";
-
-    let newTask = document.getElementById("editInput");
-    let value = newTask.value;
-
-    console.log(value)  
-
-
-
-
-    // element.childNodes[0]
-
+    // container.style.display = "initial";
+    // container.style.flexDirection = "initial";
+    // container.style.alignItems = "initial";
 }
