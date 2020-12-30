@@ -21,13 +21,8 @@
             <div id="edit" class="edit">
                 <h1>Editar Tarefa</h1>
                 <div class="edit-input">
-                    <input id="editInput" type="text" placeholder="">
-                    <button onclick="editar()" type="button">Editar</button>
-                </div>
-
-                <div id="confirm" class="confirm">
-                    <button class="cancel">Cancelar</button>
-                    <button class="confirm" onclick="confirmed()">Confirmar</button>
+                    <input id="editInput" type="text">
+                    <button onclick="editar(), sucessEdit(), addIcon()" type="button">Editar</button>
                 </div>
             </div>
 
@@ -37,11 +32,9 @@
             <div id="inputs" class="box-input">
                 <input id="tarefa" type="text" placeholder="Escreva uma tarefa...">
                 <button onclick="createTask()"type="button">Add Tarefa</button>
-                <button id="btnEdit" onclick="edit()" class="edit-tafera">Editar Tarefa</button>
+                <button id="btnEdit" onclick="edit(), removeIcon()" class="edit-tafera">Editar Tarefa</button>
             </div>
             
-            
-
 
             <div class="display" id="display"></div>
 
