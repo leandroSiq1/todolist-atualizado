@@ -21,7 +21,7 @@
             <div id="edit" class="edit">
                 <h1>Editar Tarefa</h1>
                 <div class="edit-input">
-                    <input id="editInput" type="text">
+                    <input id="editInput" type="text" onkeydown="setValueKeyEdit(event)">
                     <button onclick="editar(), sucessEdit(), addIcon()" type="button">Editar</button>
                 </div>
             </div>

@@ -47,12 +47,14 @@ function edit() {
     title.style.display = "none";
     displayEdit.classList = "edit ts";
 
-    for(let task of display.childNodes) {  
+    for(let task of display.childNodes) { 
+        
+        task.style.pointerEvents = "initial";
 
         task.addEventListener("click", () =>{
             let title = document.getElementById("h1Two");
-
             task.classList = "alo task";
+
             for(let clas of display.childNodes) {
                 if(task.classList != clas.classList) {
                     clas.style.display = "none";
@@ -63,9 +65,7 @@ function edit() {
                 displayEdit.style.display = "flex";
                 title.style.display = "none";
             }
-            
         });
-
     }
 }
 
@@ -97,8 +97,16 @@ function addIcon() {
         iconDel.classList = iconDelete;
         task.children[1].appendChild(iconDel);
         task.children[1].style.pointerEvents = 'initial';
+
         iconDel.addEventListener("click", ()=> {
-            task.remove();
+            iconDel.parentElement.parentElement.remove();
+            sucessEdit();
+
+            for(let task5 of display.childNodes) {
+                task5.style.display = "flex";
+                console.log(task5);
+            }
+        
             if(display.childNodes.length < 1 || null) {
                 btn.style.display = "none";  
             }
@@ -132,8 +140,11 @@ function sucessEdit() {
     title.style.display = "flex";
     displayEdit.classList = "edit";
 
-    for(let task of display.childNodes) {
-        task.style.display = "flex";  
-        task.style.pointerEvents = 'none';
-    }
+    setTimeout(()=> {
+        for(let task of display.childNodes) {
+            task.style.display = "flex";
+            task.style.pointerEvents = 'none';
+            console.log("entrei aqui")
+        }
+    }, 5);
 }
