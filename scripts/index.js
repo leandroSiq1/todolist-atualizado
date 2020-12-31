@@ -24,7 +24,7 @@ function createTask() {
         task.children[1].children[0].addEventListener("click", ()=>{
             task.remove();
 
-            if(display.childNodes.length < 1) {
+            if(display.childNodes.length < 1 || null) {
                 btn.style.display = "none";  
             }
         });
@@ -73,6 +73,14 @@ function setValueKey(event) {
     event.key == "Enter" ? createTask() : false;
 }
 
+function setValueKeyEdit(event) {
+    if(event.key == "Enter") {
+        editar();
+        sucessEdit();
+        addIcon();
+    }
+}
+
 function removeIcon() {
     for(let task of display.childNodes) {
         if(task) {
@@ -83,11 +91,18 @@ function removeIcon() {
 }
 
 function addIcon() {
+    let btn = document.getElementById("btnEdit");
     for(let task of display.childNodes) {
         let iconDel = document.createElement("i");
         iconDel.classList = iconDelete;
         task.children[1].appendChild(iconDel);
         task.children[1].style.pointerEvents = 'initial';
+        iconDel.addEventListener("click", ()=> {
+            task.remove();
+            if(display.childNodes.length < 1 || null) {
+                btn.style.display = "none";  
+            }
+        });
     }
 }
 
@@ -120,6 +135,5 @@ function sucessEdit() {
     for(let task of display.childNodes) {
         task.style.display = "flex";  
         task.style.pointerEvents = 'none';
-        // task.classList = "task";
     }
 }
