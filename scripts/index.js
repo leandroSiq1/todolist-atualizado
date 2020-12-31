@@ -40,17 +40,16 @@ function edit() {
     let title = document.getElementById("h1One");
     let title2 = document.getElementById("h1Two");
     let displayInputs = document.getElementById("inputs");
+    var displayEdit = document.getElementById("edit");
 
     title2.style.display = "flex";
     displayInputs.style.display = "none";
     title.style.display = "none";
+    displayEdit.classList = "edit ts";
 
-    
+    for(let task of display.childNodes) {  
 
-    for(let task of display.childNodes) {
-        
         task.addEventListener("click", () =>{
-            let displayEdit = document.getElementById("edit");
             let title = document.getElementById("h1Two");
 
             task.classList = "alo task";
@@ -60,10 +59,18 @@ function edit() {
                 }
             }
 
-            displayEdit.style.display = "flex";
-            title.style.display = "none";
+            if(displayEdit.classList != "edit") {
+                displayEdit.style.display = "flex";
+                title.style.display = "none";
+            }
+            
         });
+
     }
+}
+
+function setValueKey(event) {
+    event.key == "Enter" ? createTask() : false;
 }
 
 function removeIcon() {
@@ -80,6 +87,7 @@ function addIcon() {
         let iconDel = document.createElement("i");
         iconDel.classList = iconDelete;
         task.children[1].appendChild(iconDel);
+        task.children[1].style.pointerEvents = 'initial';
     }
 }
 
@@ -95,7 +103,6 @@ function editar() {
             task.classList = "task";
         }
     }
-    
 }
 
 function sucessEdit() {
@@ -108,10 +115,11 @@ function sucessEdit() {
     displayInputs.style.display = "flex";
     displayEdit.style.display = "none";
     title.style.display = "flex";
+    displayEdit.classList = "edit";
 
     for(let task of display.childNodes) {
         task.style.display = "flex";  
         task.style.pointerEvents = 'none';
+        // task.classList = "task";
     }
-
 }

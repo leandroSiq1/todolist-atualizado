@@ -30,8 +30,8 @@
             <h1 id="h1Two" class="two">Selecione a Tarefa que deseja Editar</h1>
 
             <div id="inputs" class="box-input">
-                <input id="tarefa" type="text" placeholder="Escreva uma tarefa...">
-                <button onclick="createTask()"type="button">Add Tarefa</button>
+                <input id="tarefa" type="text" placeholder="Escreva uma tarefa..." onkeydown="setValueKey(event)">
+                <button onclick="createTask()" type="button">Add Tarefa</button>
                 <button id="btnEdit" onclick="edit(), removeIcon()" class="edit-tafera">Editar Tarefa</button>
             </div>
             
