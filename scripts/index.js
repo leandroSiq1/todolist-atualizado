@@ -11,28 +11,33 @@ function createTask() {
     let btn = document.getElementById("btnEdit");
 
     if(value != "") {
-        display.appendChild(task);
-        task.classList.add("task");
-        task.id = "task";
-        task.appendChild(p);
-        task.appendChild(icons);
 
-        icons.classList = "icons";
-        icons.appendChild(iconDel);
-        iconDel.classList = iconDelete;
+        if(display.childNodes.length >= 5) {
+            return;
+        } else {
+            console.log(display.childNodes)
+            display.appendChild(task);
+            task.classList.add("task");
+            task.id = "task";
+            task.appendChild(p);
+            task.appendChild(icons);
 
-        task.children[1].children[0].addEventListener("click", ()=>{
-            task.remove();
+            icons.classList = "icons";
+            icons.appendChild(iconDel);
+            iconDel.classList = iconDelete;
 
-            if(display.childNodes.length < 1 || null) {
-                btn.style.display = "none";  
-            }
-        });
+            task.children[1].children[0].addEventListener("click", ()=>{
+                task.remove();
 
-        p.innerText = value;   
-        btn.style.display = "flex";
-        input.value = "";
-        
+                if(display.childNodes.length < 1 || null) {
+                    btn.style.display = "none";  
+                }
+            });
+
+            p.innerText = value;   
+            btn.style.display = "flex";
+            input.value = "";
+        }    
     }
 }
 
@@ -41,7 +46,9 @@ function edit() {
     let title2 = document.getElementById("h1Two");
     let displayInputs = document.getElementById("inputs");
     var displayEdit = document.getElementById("edit");
+    let btnBack = document.getElementById("btnBack");
 
+    btnBack.style.display = "flex";
     title2.style.display = "flex";
     displayInputs.style.display = "none";
     title.style.display = "none";
@@ -133,12 +140,39 @@ function sucessEdit() {
     let displayEdit = document.getElementById("edit");
     let title2 = document.getElementById("h1Two");
     let displayInputs = document.getElementById("inputs");
-
+    let btnBack = document.getElementById("btnBack");
+    
+    btnBack.style.display = "none";
     title2.style.display = "none";
     displayInputs.style.display = "flex";
     displayEdit.style.display = "none";
     title.style.display = "flex";
     displayEdit.classList = "edit";
+    
+
+    setTimeout(()=> {
+        for(let task of display.childNodes) {
+            task.style.display = "flex";
+            task.style.pointerEvents = 'none';
+        }
+    }, 5);
+}
+
+function back() {
+    let title = document.getElementById("h1One");
+    let displayEdit = document.getElementById("edit");
+    let title2 = document.getElementById("h1Two");
+    let displayInputs = document.getElementById("inputs");
+    let btnBack = document.getElementById("btnBack");
+
+    btnBack.style.display = "none";
+    title2.style.display = "none";
+    displayInputs.style.display = "flex";
+    displayEdit.style.display = "none";
+    title.style.display = "flex";
+    displayEdit.classList = "edit";
+
+    addIcon();
 
     setTimeout(()=> {
         for(let task of display.childNodes) {

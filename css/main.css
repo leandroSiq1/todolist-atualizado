@@ -34,6 +34,8 @@ div.container {
     animation-name: apper;
     animation-duration: .4s;
 
+
+    position: relative;
 }
 
 div.container > h1.one {
@@ -221,6 +223,28 @@ div.edit-input button {
 
 div.edit-input button:hover {
     background: #dabc7e;   
+}
+
+button.btn-back {
+    width: 4rem;
+    height: 4rem;
+
+    background: #121214;
+    border-radius: .5rem;
+    border: 1px solid #ffff00;
+
+    display: none;
+    align-items: center;
+    justify-content: center;
+
+    position: absolute;
+    left: 1rem;
+    bottom: 1rem;
+
+    animation-name: apper-left;
+    animation-duration: .3s;
+
+    cursor: pointer;
 }
 
 @keyframes apper-left {
