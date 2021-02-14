@@ -1,184 +1,193 @@
-const iconDelete = "far fa-trash-alt";
-const display = document.getElementById("display");
-const input = document.getElementById("tarefa");
+const tasks = [];
 
-function createTask() {
-    let value = input.value;
-    let task = document.createElement("div");
-    let icons = document.createElement("div");
-    let p = document.createElement("p");
-    let iconDel = document.createElement("i")
-    let btn = document.getElementById("btnEdit");
+const Task = {
+    display: document.querySelector("#display"),
 
-    if(value != "") {
+    createTask(tasks, index) {
+        const html = `
+                <div class="check">
+                    <input type="checkbox" >
+                </div>
+    
+                <div class="content">
+                    <p>${tasks}</p>
+                    <i class="fas fa-trash-alt" onclick="Task.remove(${index})"></i>
+                </div>
+        `
+        
+        return html;
+    },
 
-        if(display.childNodes.length >= 5) {
-            return;
-        } else {
-            console.log(display.childNodes)
-            display.appendChild(task);
-            task.classList.add("task");
-            task.id = "task";
-            task.appendChild(p);
-            task.appendChild(icons);
+    remove(index) {
+        tasks.splice(index, 1)
 
-            icons.classList = "icons";
-            icons.appendChild(iconDel);
-            iconDel.classList = iconDelete;
+        App.reload();
+    },
 
-            task.children[1].children[0].addEventListener("click", ()=>{
-                task.remove();
+    addTask() {
+        const input = document.getElementById("inputTask");
+        const description = input.value;
 
-                if(display.childNodes.length < 1 || null) {
-                    btn.style.display = "none";  
-                }
-            });
+        if(description === "") {
+            if(Task.display.childNodes.length < 6) {
+                Alerts.alertInsertText();
+                return;
+            }    
+        }
 
-            p.innerText = value;   
-            btn.style.display = "flex";
+        if(description === "") {
+            if(Task.display.childNodes.length <= 6) {
+                Alerts.numberMaxTask();
+                return;
+            }   
+        }
+
+        if(Task.display.childNodes.length < 6) {
+            tasks.push({description: description});
+            App.reload();
+            Alerts.alertSucess();
+        }
+    },
+
+    addTaskDisplay(task, index) {
+        const div = document.createElement('div');
+
+        div.classList.add("task");
+        div.classList.add("animate");
+        div.dataset.index = index;
+
+        div.innerHTML = Task.createTask(task.description, index);
+        Task.display.appendChild(div);
+
+        Task.clearInput();
+    },
+
+    keyValidate(event) {
+        event.key === "Enter" ? Task.addTask() : false;
+    },
+
+    clearInput() {
+        const input = document.getElementById("inputTask");
+        input.value = "";     
+    },
+
+    bloqInput(input) {
+        if(Task.display.childNodes.length >= 6) {
             input.value = "";
-        }    
+            setTimeout(()=> {
+                Alerts.numberMaxTask();
+            }, 500)
+        }
+    },
+
+    clearTasks() {
+        Task.display.innerHTML = "";
+    },
+}
+
+const Alerts = {
+
+    alertInsertText() {
+        const alert = document.querySelector(".alert#alert");
+
+        if(alert.classList.length == 1) {
+            alert.classList.add("active");
+          
+            setTimeout(() => {
+                alert.style.opacity = '0';
+                setTimeout(() => {
+                    alert.classList.remove("active");
+                    alert.style.opacity = ''; 
+                }, 1000);
+
+            }, 3500);
+        }
+    },
+
+    alertSucess() {
+        const alert = document.querySelector(".alert-sucess#alert");
+
+        if(alert.classList.length == 1) {
+            alert.classList.add("active");
+          
+            setTimeout(() => {
+                alert.style.opacity = '0';
+                setTimeout(() => {
+                    alert.classList.remove("active");
+                    alert.style.opacity = ''; 
+                }, 1000);
+
+            }, 3500);
+        }
+    },
+
+    numberMaxTask() {
+        const alert = document.querySelector(".alert-max-task#alert");
+
+        if(alert.classList.length == 1) {
+            alert.classList.add("active");
+          
+            setTimeout(() => {
+                alert.style.opacity = '0';
+                setTimeout(() => {
+                    alert.classList.remove("active");
+                    alert.style.opacity = ''; 
+                }, 1000);
+
+            }, 3500);
+        }
+    },
+
+    getNamesAlerts() {
+        const alert = document.querySelectorAll("body #alert");
+
+        return {
+            alertInsert: alert[0].className,
+            alertSucess: alert[1].className,
+            alertMax: alert[2].className,
+            // alertDelete: alert[3].className
+        }
+    },
+
+    closeAlert() {
+        const alert = document.querySelectorAll("body #alert");
+
+        for(let i = 0; i < alert.length; i++) {
+            let active = "active"; 
+            let totalAlerts = { alertInsert,  alertSucess, alertMax, alertDelete } = Alerts.getNamesAlerts();
+
+            let alertInsertText = `${totalAlerts.alertInsert} ${active}`;
+            let alertSucessInsert = `${totalAlerts.alertSucess} ${active}`;
+            let alertMaximum = `${totalAlerts.alertMax} ${active}`;
+            let alertDeleteSucess = `${totalAlerts.alertDelete} ${active}`;
+
+            if(alert[i].className == alertInsertText || alertSucessInsert || alertMaximum ||alertDeleteSucess) {
+                setTimeout(() => {
+                    alert[i].style.opacity = '0';
+                    setTimeout(() => {
+                        alert[i].classList.remove("active");
+                        alert[i].style.opacity = '';
+                    }, 1000);
+
+                }, 100);
+            }
+
+        }
+
     }
 }
 
-function edit() {
-    let title = document.getElementById("h1One");
-    let title2 = document.getElementById("h1Two");
-    let displayInputs = document.getElementById("inputs");
-    var displayEdit = document.getElementById("edit");
-    let btnBack = document.getElementById("btnBack");
-
-    btnBack.style.display = "flex";
-    title2.style.display = "flex";
-    displayInputs.style.display = "none";
-    title.style.display = "none";
-    displayEdit.classList = "edit ts";
-
-    for(let task of display.childNodes) { 
-        
-        task.style.pointerEvents = "initial";
-
-        task.addEventListener("click", () =>{
-            let title = document.getElementById("h1Two");
-            task.classList = "alo task";
-
-            for(let clas of display.childNodes) {
-                if(task.classList != clas.classList) {
-                    clas.style.display = "none";
-                }
-            }
-
-            if(displayEdit.classList != "edit") {
-                displayEdit.style.display = "flex";
-                title.style.display = "none";
-            }
+const App = {
+    init() {
+        tasks.forEach((task, index)=> {
+            Task.addTaskDisplay(task, index)
         });
+    },
+
+    reload() {
+        Task.clearTasks();
+        App.init();
     }
 }
 
-function setValueKey(event) {
-    event.key == "Enter" ? createTask() : false;
-}
-
-function setValueKeyEdit(event) {
-    if(event.key == "Enter") {
-        editar();
-        sucessEdit();
-        addIcon();
-    }
-}
-
-function removeIcon() {
-    for(let task of display.childNodes) {
-        if(task) {
-            let iconDel = task.children[1].children[0];
-            iconDel.remove();
-        }
-    }
-}
-
-function addIcon() {
-    let btn = document.getElementById("btnEdit");
-    for(let task of display.childNodes) {
-        let iconDel = document.createElement("i");
-        iconDel.classList = iconDelete;
-        task.children[1].appendChild(iconDel);
-        task.children[1].style.pointerEvents = 'initial';
-
-        iconDel.addEventListener("click", ()=> {
-            iconDel.parentElement.parentElement.remove();
-            sucessEdit();
-
-            for(let task5 of display.childNodes) {
-                task5.style.display = "flex";
-                console.log(task5);
-            }
-        
-            if(display.childNodes.length < 1 || null) {
-                btn.style.display = "none";  
-            }
-        });
-    }
-}
-
-function editar() {
-    for(let task of display.childNodes) {
-        if(task.classList.length > 1) {
-            let p = task.childNodes[0];
-            let text = document.getElementById("editInput");
-
-            p.innerText = text.value;
-            text.value = "";
-               
-            task.classList = "task";
-        }
-    }
-}
-
-function sucessEdit() {
-    let title = document.getElementById("h1One");
-    let displayEdit = document.getElementById("edit");
-    let title2 = document.getElementById("h1Two");
-    let displayInputs = document.getElementById("inputs");
-    let btnBack = document.getElementById("btnBack");
-    
-    btnBack.style.display = "none";
-    title2.style.display = "none";
-    displayInputs.style.display = "flex";
-    displayEdit.style.display = "none";
-    title.style.display = "flex";
-    displayEdit.classList = "edit";
-    
-
-    setTimeout(()=> {
-        for(let task of display.childNodes) {
-            task.style.display = "flex";
-            task.style.pointerEvents = 'none';
-        }
-    }, 5);
-}
-
-function back() {
-    let title = document.getElementById("h1One");
-    let displayEdit = document.getElementById("edit");
-    let title2 = document.getElementById("h1Two");
-    let displayInputs = document.getElementById("inputs");
-    let btnBack = document.getElementById("btnBack");
-
-    btnBack.style.display = "none";
-    title2.style.display = "none";
-    displayInputs.style.display = "flex";
-    displayEdit.style.display = "none";
-    title.style.display = "flex";
-    displayEdit.classList = "edit";
-
-    addIcon();
-
-    setTimeout(()=> {
-        for(let task of display.childNodes) {
-            task.style.display = "flex";
-            task.style.pointerEvents = 'none';
-            console.log("entrei aqui")
-        }
-    }, 5);
-}
+App.init();

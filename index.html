@@ -10,37 +10,77 @@
         <link href="https://fonts.googleapis.com/css2?family=Langar&display=swap" rel="stylesheet">
 
         <link href="css/main.css" rel="stylesheet">
+        <link href="css/animations.css" rel="stylesheet">
         <script src="https://kit.fontawesome.com/6d4b9a93a2.js" crossorigin="anonymous"></script>
 
         
     </head>
     <body>
 
-        <div id="container" class="container">
-
-            <div id="edit" class="edit">
-                <h1>Editar Tarefa</h1>
-                <div class="edit-input">
-                    <input id="editInput" type="text" onkeydown="setValueKeyEdit(event)">
-                    <button onclick="editar(), sucessEdit(), addIcon()" type="button">Editar</button>
-                </div>
+        <div class="alert" id="alert">
+            <div class="icon">
+                <i class="fas fa-exclamation-triangle"></i>
             </div>
 
-            <h1 id="h1One" class="one">Oque o dia nos reserva ?</h1>
-            <h1 id="h1Two" class="two">Selecione a Tarefa que deseja Editar</h1>
+            <div class="content-icon">
+                <p>Por favor Escreva uma tarefa!</p>
 
-            <div id="inputs" class="box-input">
-                <input id="tarefa" type="text" placeholder="Escreva uma tarefa..." onkeydown="setValueKey(event)">
-                <button onclick="createTask()" type="button">Add Tarefa</button>
-                <button id="btnEdit" onclick="edit(), removeIcon()" class="edit-tafera">Editar Tarefa</button>
+                <i class="fas fa-times-circle" onclick="Alerts.closeAlert()"></i>
             </div>
-            
-
-            <div class="display" id="display"></div>
-
-            <button id="btnBack" onclick="back()" class="btn-back"><i class="fas fa-arrow-left"></i></button>
-
         </div>
+
+        <div class="alert-sucess" id="alert">
+            <div class="icon">
+                <i class="fas fa-check-circle"></i>
+            </div>
+
+            <div class="content-icon">
+                <p>Tarefa adicionada com sucesso!</p>
+
+                <i class="fas fa-times-circle" onclick="Alerts.closeAlert()"></i>
+            </div>
+        </div>
+
+        <div class="alert-max-task" id="alert">
+            <div class="icon">
+                <i class="fas fa-exclamation-circle"></i>
+            </div>
+
+            <div class="content-icon">
+                <p>Numero maximo de tarefas atingido.</p>
+
+                <i class="fas fa-times-circle" onclick="Alerts.closeAlert()"></i>
+            </div>
+        </div>
+
+        <!-- <div class="alert-delete" id="alert">
+            <div class="icon">
+                <i class="fas fa-exclamation-triangle"></i>
+            </div>
+
+            <div class="content-icon">
+                <p>Numero maximo de tarefas, atingido.</p>
+
+                <i class="fas fa-times-circle" onclick="Alerts.closeAlert()"></i>
+            </div>
+        </div> -->
+
+       <section class="box">
+           <div class="top-bar">
+               <h1>Oque o dia nos reserva ?</h1>
+
+               <div class="group-input">
+                    <input 
+                        type="text" id="inputTask" 
+                        oninput="Task.bloqInput(this)" 
+                        onkeydown="Task.keyValidate(event)"
+                    >
+                    <button onclick="Task.addTask()">Adicionar</button>
+               </div>
+           </div>
+
+           <div class="container-task" id="display"></div>
+       </section>
 
 
         <script src="scripts/index.js"></script>
